@@ -15,7 +15,6 @@ while True:
     if rsp not in  array:
         print("Ingresa una de las opciones validas para jugar")
         sleep(1)
-        print("Ingresa una de las opciones validas")
         os.system('cls')        
     else:
         if rsp == pc :
