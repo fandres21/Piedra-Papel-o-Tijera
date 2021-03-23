@@ -6,6 +6,7 @@ array = ["piedra", "papel", "tijera"]
 contUser = 0
 contPc = 0
 condicion = True
+clear= lambda :os.system('cls')
 
 
 def whoWin(contPc, contUser):
@@ -21,7 +22,7 @@ def whoWin(contPc, contUser):
 
 
 def presentacion():
-    os.system("cls")
+    clear()
     print("JUEGO DE PIEDRA, PAPEL O TIJERA")
     pc = array[randint(0,len(array)-1)]
     pci=array.index(pc)
@@ -36,26 +37,27 @@ if __name__ == "__main__":
         pc,pci = presentacion()
         print("Tu tienes: {} puntos y la maquina tiene {} puntos ".format(contUser,contPc))
         rsp = input('Ingresa piedra,papel o tijera:\n >> ').lower()
-        rspi=array.index(rsp)
         if rsp not in array:
             print("Ingresa una de las opciones validas para jugar")
             sleep(1)
-            os.system('cls')
-        elif pci >rspi:
-            if pci ==2 and rspi==0:
-                print("Ganaste, {} gana a {}".format(rsp, pc))
-                contUser += 1
-            else:
-                print("Perdiste, {} gana a {}".format(pc,rsp))
-                contPc += 1
-        elif pci == rspi:
-            print("Es un empate de dos {}s".format(pc))
-        elif pci<rspi:
-            if pci == 0 and rspi == 2:
-                print("Perdiste, {} gana a {}".format(pc, rsp))
-                contPc += 1
-            else:
-                print("Ganaste, {} gana a {}".format(rsp, pc))
-                contUser += 1
+            clear()
+        else:
+            rspi = array.index(rsp)
+            if pci >rspi:
+                if pci ==2 and rspi==0:
+                    print("Ganaste, {} gana a {}".format(rsp, pc))
+                    contUser += 1
+                else:
+                    print("Perdiste, {} gana a {}".format(pc,rsp))
+                    contPc += 1
+            elif pci == rspi:
+                print("Es un empate de dos {}s".format(pc))
+            elif pci<rspi:
+                if pci == 0 and rspi == 2:
+                    print("Perdiste, {} gana a {}".format(pc, rsp))
+                    contPc += 1
+                else:
+                    print("Ganaste, {} gana a {}".format(rsp, pc))
+                    contUser += 1
         sleep(2)
         condicion = whoWin(contPc,contUser)
