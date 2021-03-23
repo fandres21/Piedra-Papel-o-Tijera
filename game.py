@@ -3,14 +3,16 @@ from time import sleep
 from random import randint
 from dearpygui.core import *
 from dearpygui.simple import *
-
+from PIL import Image
 array = ["piedra", "papel", "tijera"]
 contUser = 0
 contPc = 0
 condicion = True
 clear= lambda :os.system('cls')
-
-
+#Imagenes para opciones
+Impiedra=Image.open("src/img/piedra.png")
+Impapel=Image.open("src/img/papel.png")
+Imtijera=Image.open("src/img/tijera.png")
 def whoWin(contPc, contUser):
     condicion = True
     if contPc > contUser:
@@ -67,9 +69,13 @@ def presentacion():
 ###########################################
 #####INTERFAZ VISUAL #####################
 ##########################################
-with window("JUEGO DE PIEDRA, PAPEL O TIJERA"):
+
+with window("PPT"):
     pc, pci = presentacion()
     add_text("Tu tienes: {} puntos y la maquina tiene {} puntos ".format(contUser,contPc))
     entrada=add_input_text("string", default_value="Ingresa piedra,papel o tijera:\n >> ".lower())
     #get_value(entrada)
-    start_dearpygui()
+    add_button("Prueba")
+    show_style_editor()
+
+start_dearpygui(primary_window="PPT")
