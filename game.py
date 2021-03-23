@@ -1,6 +1,8 @@
 import os
 from time import sleep
 from random import randint
+from dearpygui import core, simple
+
 from dearpygui.core import *
 from dearpygui.simple import *
 from PIL import Image
@@ -28,11 +30,9 @@ def whoWin(contPc, contUser):
 def presentacion():
     clear()
     #print("JUEGO DE PIEDRA, PAPEL O TIJERA")
-    pc = array[randint(0,len(array)-1)]
-    pci=array.index(pc)
-    return [pc,pci]
-
-
+    pc = array[randint(0, len(array)-1)]
+    pci = array.index(pc)
+    return [pc, pci]
 
 
 # if __name__ == "__main__":
@@ -69,13 +69,32 @@ def presentacion():
 ###########################################
 #####INTERFAZ VISUAL #####################
 ##########################################
+def obtenerSelectBox(Sender):
+    # print para comprobar resultado en Str
+    #print(array[core.get_value(Sender)])
+    return str(array[core.get_value(Sender)])
 
-with window("PPT"):
+
+with simple.window("JUEGO DE PIEDRA, PAPEL O TIJERA"):
+    core.set_main_window_size(500, 500)
     pc, pci = presentacion()
-    add_text("Tu tienes: {} puntos y la maquina tiene {} puntos ".format(contUser,contPc))
-    entrada=add_input_text("string", default_value="Ingresa piedra,papel o tijera:\n >> ".lower())
-    #get_value(entrada)
-    add_button("Prueba")
-    show_style_editor()
+    core.add_text(
+        "Tu tienes: {} puntos y la maquina tiene {} puntos ".format(contUser, contPc))
 
-start_dearpygui(primary_window="PPT")
+    opcionElegida = core.add_listbox(
+        name="",
+        items=array,
+        num_items=3,
+        default_value = 0,
+        callback=obtenerSelectBox,
+        label = "aasdsads"
+        
+        )
+        
+    print(opcionElegida)
+
+    entrada = core.add_input_text(
+        "string", default_value="Ingresa piedra,papel o tijera:\n >> ".lower())
+    # get_value(entrada)
+
+core.start_dearpygui(primary_window="JUEGO DE PIEDRA, PAPEL O TIJERA")
