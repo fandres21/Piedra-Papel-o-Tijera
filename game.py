@@ -5,14 +5,19 @@ from dearpygui import core, simple
 
 from dearpygui.core import *
 from dearpygui.simple import *
+
 from PIL import Image
 array = ["piedra", "papel", "tijera"]
 condicion = True
-clear= lambda :os.system('cls')
-#Imagenes para opciones
-Impiedra=Image.open("src/img/piedra.png")
-Impapel=Image.open("src/img/papel.png")
-Imtijera=Image.open("src/img/tijera.png")
+def clear(): return os.system('cls')
+
+
+# Imagenes para opciones
+Impiedra = Image.open("src/img/piedra.png")
+Impapel = Image.open("src/img/papel.png")
+Imtijera = Image.open("src/img/tijera.png")
+
+
 def whoWin(contPc, contUser):
     condicion = True
     if contPc > contUser:
